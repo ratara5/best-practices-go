@@ -1,0 +1,11 @@
+FROM amd64/golang as builder
+WORKDIR /app
+COPY . .
+RUN go mod download
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main main.go
+FROM amd64/alpine:latest
+WORKDIR /app
+RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add tzdata
+COPY --from=builder /app/main .
+CMD ["/app/main"]

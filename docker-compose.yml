@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  best-practices-go:
+    build: .
+    image: best-practices-go:dev
+    container_name: best-practices-go-container
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:8080
+    restart: always

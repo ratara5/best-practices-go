@@ -1,0 +1,19 @@
+go mod init <nombredelrepo>
+
+go mod tidy
+
+curl http://localhost:8080/
+
+docker compose up -d
+
+docker ps
+
+docker images
+
+docker kill <nombredelcontenedor>
+
+docker rm <nombredelcontenedor>
+
+docker build --no-cache -t best-practices-go:lite -f Dockerfile.prod .
+
+docker run -d -p 8181:8080 --name best-practices-go-con-lite best-practices-go:lite
